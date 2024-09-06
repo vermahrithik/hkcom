@@ -96,8 +96,6 @@ class _ProductListPageState extends State<ProductListPage> {
     ),
   ];
 
-  // productsController.products = products.map<ProductModel>((product)=>ProductModel.fromJson(product)).toList();
-
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -106,7 +104,7 @@ class _ProductListPageState extends State<ProductListPage> {
       return Scaffold(
         backgroundColor: Color(0xff131C25),
         appBar: AppBar(
-          backgroundColor: Color(0xff223243),
+          backgroundColor: const Color(0xff223243),
           leading: IconButton(
               onPressed: () {},
               icon: const Icon(
@@ -276,9 +274,6 @@ class _ProductListPageState extends State<ProductListPage> {
                                         crossAxisCount: 2),
                                 itemCount: products.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  // final availability =
-                                  //     products[index]["availability"];
-                                  // print('Product ${products[index]["name"]} availability: $availability');
                                   return Container(
                                     margin: const EdgeInsets.all(2),
                                     height: deviceHeight * 0.3,
@@ -484,16 +479,12 @@ class _ProductListPageState extends State<ProductListPage> {
     try {
       return Image.asset(
         'images/$image',
-        // width: MediaQuery.of(context).size.width * 0.85,
-        // height: MediaQuery.of(context).size.width * 0.85,
         fit: BoxFit.cover,
       );
     } catch (e) {
       print('Exception: Invalid Image Data: $e');
       return Image.asset(
         'assets/headset.jpg',
-        // width: MediaQuery.of(context).size.width * 0.85,
-        // height: MediaQuery.of(context).size.width * 0.85,
         fit: BoxFit.cover,
       );
     }
