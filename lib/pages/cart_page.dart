@@ -308,7 +308,7 @@ class _CartPageState extends State<CartPage> {
         fit: BoxFit.cover,
       );
     } catch (e) {
-      print('Exception: Invalid Image Data: $e');
+      debugPrint('Exception: Invalid Image Data: $e');
       return Image.asset(
         'assets/headset.jpg',
         // width: MediaQuery.of(context).size.width * 0.85,

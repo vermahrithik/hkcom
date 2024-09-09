@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hkcom/controller/productcontroller.dart';
-import 'package:hkcom/model/productmodel.dart';
 import 'package:hkcom/routing/app_route_constants.dart';
 
 class ProductListPage extends StatefulWidget {
@@ -70,8 +69,7 @@ class _ProductListPageState extends State<ProductListPage> {
                       CupertinoIcons.cart,
                       color: Color(0xffBC1D58),
                       size: 18,
-                    )
-                ),
+                    )),
                 Transform.translate(
                   offset: const Offset(8, -7),
                   child: CircleAvatar(
@@ -219,18 +217,22 @@ class _ProductListPageState extends State<ProductListPage> {
                                           ),
                                           child: ClipRRect(
                                             borderRadius:
-                                              BorderRadius.circular(12),
-                                            child: productsController.productss[index].image != null
-                                              ? _buildImage(
-                                                productsController.productss[index].image!)
-                                              : Image.asset(
-                                                'assets/headset.jpg',
-                                                fit: BoxFit.fitHeight,
-                                              ),
+                                                BorderRadius.circular(12),
+                                            child: productsController
+                                                        .productss[index]
+                                                        .image !=
+                                                    null
+                                                ? _buildImage(productsController
+                                                    .productss[index].image!)
+                                                : Image.asset(
+                                                    'assets/headset.jpg',
+                                                    fit: BoxFit.fitHeight,
+                                                  ),
                                           ),
                                         ),
                                         Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             const SizedBox(height: 5),
                                             Text(
@@ -246,9 +248,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                             Text(
                                               "${productsController.productss[index].price}",
                                               style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.grey.shade500),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.grey.shade500),
                                             ),
                                             const SizedBox(
                                               height: 2,
@@ -256,29 +258,116 @@ class _ProductListPageState extends State<ProductListPage> {
                                             Text(
                                               "${productsController.productss[index].category}",
                                               style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.grey.shade500),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.grey.shade500),
                                             ),
                                             const SizedBox(
                                               height: 2,
                                             ),
                                             Row(
                                               children: [
-                                                Text("Quantity : ${productsController.productss[index].quantities}"),
                                                 Text(
-                                                  productsController.productss[index].availability!
-                                                    ? "In Stock"
-                                                    : "Not Available",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                      FontWeight.w400,
-                                                    color:
-                                                      Colors.grey.shade500),
+                                                    "Quantity : ${productsController.addedToCart.length != 0 ? productsController.addedToCart.length : 0}"
                                                 ),
-                                                productsController
-                                                        .productss.isEmpty
+                                                // Text(
+                                                //   productsController.productss[index].availability!
+                                                //     ? "In Stock"
+                                                //     : "Not Available",
+                                                //   style: TextStyle(
+                                                //     fontSize: 12,
+                                                //     fontWeight:
+                                                //       FontWeight.w400,
+                                                //     color:
+                                                //       Colors.grey.shade500),
+                                                // ),
+                                                // productsController.addedToCart.any((e) => e.product_id != productsController.productss[index].product_id)
+                                                //     ? SizedBox(
+                                                //         height: 30,
+                                                //         width: 30,
+                                                //         child: OutlinedButton(
+                                                //           onPressed: () {
+                                                //             debugPrint(
+                                                //                 'add to cart');
+                                                //             productsController
+                                                //                 .addToCart(productsController.productss[index]);
+                                                //           },
+                                                //           style: OutlinedButton.styleFrom(
+                                                //             backgroundColor:
+                                                //               Colors.yellow,
+                                                //             padding:
+                                                //               const EdgeInsets
+                                                //                 .all(0),
+                                                //             shape: RoundedRectangleBorder(
+                                                //               borderRadius:
+                                                //                 BorderRadius
+                                                //                   .circular(
+                                                //                     4))),
+                                                //           child: const Icon(
+                                                //             Icons
+                                                //               .add_shopping_cart_rounded,
+                                                //             color: Colors.white,
+                                                //             size: 20,
+                                                //           ),
+                                                //         ),
+                                                //       ):Container(
+                                                //         width: 100,
+                                                //         height: 50,
+                                                //         decoration:
+                                                //         BoxDecoration(
+                                                //           borderRadius:
+                                                //           BorderRadius
+                                                //               .circular(8),
+                                                //           color: Colors.green,
+                                                //         ),
+                                                //               child: Row(
+                                                //           mainAxisAlignment:
+                                                //           MainAxisAlignment
+                                                //               .center,
+                                                //           crossAxisAlignment:
+                                                //           CrossAxisAlignment
+                                                //               .center,
+                                                //           children: [
+                                                //                 Expanded(
+                                                //                     flex: 1,
+                                                //                     child:
+                                                //                     IconButton(
+                                                //                         onPressed:
+                                                //                             () {
+                                                //                           productsController.addedToCart[index].quantities != 0
+                                                //                               ? productsController.addedToCart.removeAt(index)
+                                                //                               : debugPrint('add products to remove');
+                                                //                         },
+                                                //                         icon: const Icon(
+                                                //                             Icons.remove))),
+                                                //                 Expanded(
+                                                //                     flex: 1,
+                                                //                     child: Text(
+                                                //                         '${productsController.productss[index].quantities != 0 ? productsController.productss[index].quantities : 0}')),
+                                                //                 Expanded(
+                                                //                 flex: 1,
+                                                //                 child:
+                                                //                 IconButton(
+                                                //                     onPressed:
+                                                //                         () {
+                                                //                       productsController
+                                                //                           .addToCart(productsController.productss[index]);
+                                                //                     },
+                                                //                     icon: const Icon(
+                                                //                         Icons.add
+                                                //                     )
+                                                //                 )
+                                                //             )
+                                                //           ],
+                                                //         ),
+                                                //       ),
+                                                Text(
+                                                    "This Products is in Cart  : ${productsController.addedToCart.contains(productsController.productss[index])}"),
+                                                !productsController.addedToCart
+                                                        .contains(
+                                                            productsController
+                                                                    .productss[
+                                                                index])
                                                     ? SizedBox(
                                                         height: 30,
                                                         width: 30,
@@ -287,78 +376,91 @@ class _ProductListPageState extends State<ProductListPage> {
                                                             debugPrint(
                                                                 'add to cart');
                                                             productsController
-                                                                .addToCart(productsController.productss[index]);
+                                                                .addToCart(
+                                                                    productsController
+                                                                            .productss[
+                                                                        index]);
                                                           },
                                                           style: OutlinedButton.styleFrom(
-                                                            backgroundColor:
-                                                              Colors.yellow,
-                                                            padding:
-                                                              const EdgeInsets
-                                                                .all(0),
-                                                            shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                BorderRadius
-                                                                  .circular(
-                                                                    4))),
+                                                              backgroundColor:
+                                                                  Colors.blue,
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(0),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4))),
                                                           child: const Icon(
                                                             Icons
-                                                              .add_shopping_cart_rounded,
+                                                                .add_shopping_cart_rounded,
                                                             color: Colors.white,
                                                             size: 20,
                                                           ),
                                                         ),
-                                                      ):Container(
-                                                  width: 100,
-                                                  height: 50,
-                                                  decoration:
-                                                  BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius
-                                                        .circular(8),
-                                                    color: Colors.green,
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .center,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .center,
-                                                    children: [
-                                                      Expanded(
-                                                          flex: 1,
-                                                          child:
-                                                          IconButton(
-                                                              onPressed:
-                                                                  () {
-                                                                productsController.addedToCart[index].quantities != 0
-                                                                    ? productsController.addedToCart.removeAt(index)
-                                                                    : debugPrint('add products to remove');
-                                                              },
-                                                              icon: const Icon(
-                                                                  Icons.remove))),
-                                                      Expanded(
-                                                          flex: 1,
-                                                          child: Text(
-                                                              '${productsController.productss[index].quantities != 0 ? productsController.productss[index].quantities : 0}')),
-                                                      Expanded(
-                                                          flex: 1,
-                                                          child:
-                                                          IconButton(
-                                                              onPressed:
-                                                                  () {
-                                                                productsController
-                                                                    .addToCart(productsController.productss[index]);
-                                                              },
-                                                              icon: const Icon(
-                                                                  Icons.add
-                                                              )
-                                                          )
                                                       )
-                                                    ],
-                                                  ),
-                                                ),
+                                                    : Row(
+                                                        children: [
+                                                          InkWell(
+                                                              onTap: () {
+                                                                int indexOfThatProductInCart = productsController
+                                                                    .addedToCart
+                                                                    .indexOf(productsController
+                                                                        .addedToCart
+                                                                        .contains(
+                                                                            productsController.productss[index]));
+                                                                // int indexOfThatProductInCart = productsController
+                                                                //     .addedToCart
+                                                                //     .indexOf(productsController.productss[index]);
+                                                                // debugPrint('$indexOfThatProductInCart');
+                                                                productsController
+                                                                    .addedToCart[
+                                                                        index]
+                                                                    .quantities = productsController
+                                                                        .addedToCart[
+                                                                            index]
+                                                                        .quantities ??
+                                                                    0 - 1;
+                                                              },
+                                                              child: const Icon(
+                                                                  Icons
+                                                                      .remove)),
+                                                          Text(
+                                                              "Quantity ::::: ${productsController.addedToCart.length}"),
+                                                          InkWell(
+                                                              onTap: () {
+                                                                int indexOfThatProductInCart = productsController
+                                                                    .addedToCart
+                                                                    .indexOf(productsController
+                                                                        .addedToCart
+                                                                        .contains(
+                                                                            productsController.productss[index]));
+                                                                // int indexOfThatProductInCart = productsController
+                                                                //     .addedToCart
+                                                                //     .indexOf(productsController.productss[index]);
 
+                                                                productsController
+                                                                    .addedToCart[
+                                                                        indexOfThatProductInCart]
+                                                                    .quantities = productsController
+                                                                        .addedToCart[
+                                                                            indexOfThatProductInCart]
+                                                                        .quantities ??
+                                                                    0 + 1;
+                                                                // productsController
+                                                                //     .addedToCart[
+                                                                //         indexOfThatProductInCart]
+                                                                //     .quantities = productsController
+                                                                //         .addedToCart[
+                                                                //             indexOfThatProductInCart]
+                                                                //         .quantities! + 1 ??
+                                                                //     0 + 1;
+                                                              },
+                                                              child: const Icon(
+                                                                  Icons.add))
+                                                        ],
+                                                      )
                                               ],
                                             ),
                                           ],
@@ -405,7 +507,7 @@ class _ProductListPageState extends State<ProductListPage> {
         fit: BoxFit.cover,
       );
     } catch (e) {
-      print('Exception: Invalid Image Data: $e');
+      debugPrint('Exception: Invalid Image Data: $e');
       return Image.asset(
         'assets/headset.jpg',
         fit: BoxFit.cover,

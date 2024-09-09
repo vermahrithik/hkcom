@@ -5,7 +5,7 @@ import 'package:hkcom/model/productmodel.dart';
 class ProductsController extends GetxController {
   // List products = <ProductModel>[].obs;
   final addedToCart = <ProductModel>[].obs;
-  var cartz = 0.obs;
+  // var cartz = 0.obs;
 
   final List<ProductModel> productss = [
     ProductModel(

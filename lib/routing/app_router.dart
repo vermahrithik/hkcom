@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hkcom/model/productmodel.dart';
 import 'package:hkcom/pages/cart_page.dart';
 import 'package:hkcom/pages/product_list_page.dart';
 import 'package:hkcom/pages/splash_screen.dart';

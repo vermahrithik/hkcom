@@ -1,5 +1,8 @@
+import 'package:equatable/equatable.dart';
 
-class ProductModel {
+// import 'package';
+
+class ProductModel extends Equatable{
   String? title;
   String? price;
   String? shipping_type;
@@ -43,4 +46,7 @@ class ProductModel {
     data['quantities'] = this.quantities as int;
     return data;
   }
+
+  @override
+  List<Object?> get props => [product_id];
 }
