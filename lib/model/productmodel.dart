@@ -7,6 +7,7 @@ class ProductModel {
   String? category;
   int? product_id;
   String? image;
+  int? quantities;
 
   ProductModel({
     required this.title,
@@ -16,6 +17,7 @@ class ProductModel {
     required this.category,
     required this.product_id,
     this.image,
+    this.quantities =0,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class ProductModel {
     category = json['category'];
     product_id = json['product_id'];
     image = json['image'];
+    // quantities = json['quantities'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,6 +40,7 @@ class ProductModel {
     data['category'] = this.category;
     data['product_id'] = this.product_id as int;
     data['image'] = this.image as int;
+    data['quantities'] = this.quantities as int;
     return data;
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,88 +19,13 @@ class _ProductListPageState extends State<ProductListPage> {
   final productsController = Get.find<ProductsController>();
   final GetStorage storage = GetStorage();
 
-  final List<ProductModel> products = [
-    ProductModel(
-      title: "Avacado",
-      price: "\$599",
-      shipping_type: "Free Shipping",
-      availability: true,
-      category: "Fruits",
-      product_id: 01,
-      image: "avacado.jpg",
-    ),
-    ProductModel(
-      title: "Wall Painting",
-      price: "\$899",
-      shipping_type: "Express Shipping",
-      availability: true,
-      category: "Art",
-      product_id: 02,
-      image: "city.jpg",
-    ),
-    ProductModel(
-      title: "Drone",
-      price: "\$199",
-      shipping_type: "Standard Shipping",
-      availability: true,
-      category: "Electronics",
-      product_id: 03,
-      image: "drone.jpg",
-    ),
-    ProductModel(
-      title: "Luggage",
-      price: "\$129",
-      shipping_type: "Free Shipping",
-      availability: false,
-      category: "Travel Accessories",
-      product_id: 04,
-      image: "luggage.jpg",
-    ),
-    ProductModel(
-      title: "Mandala Art 01",
-      price: "\$299",
-      shipping_type: "Standard Shipping",
-      availability: true,
-      category: "Art",
-      product_id: 05,
-      image: "mandala.jpg",
-    ),
-    ProductModel(
-      title: "Mandala Art 02",
-      price: "\$499",
-      shipping_type: "Express Shipping",
-      availability: true,
-      category: "Art",
-      product_id: 06,
-      image: "mandala01.jpg",
-    ),
-    ProductModel(
-      title: "Oversized Tshirt",
-      price: "\$1200",
-      shipping_type: "Free Shipping",
-      availability: false,
-      category: "Clothes",
-      product_id: 07,
-      image: "oversized.jpg",
-    ),
-    ProductModel(
-      title: "Handmade Painting",
-      price: "\$1200",
-      shipping_type: "Free Shipping",
-      availability: true,
-      category: "Art",
-      product_id: 08,
-      image: "portrait.jpg",
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
     return Obx(() {
       return Scaffold(
-        backgroundColor: Color(0xff131C25),
+        backgroundColor: const Color(0xff131C25),
         appBar: AppBar(
           backgroundColor: const Color(0xff223243),
           leading: IconButton(
@@ -137,22 +60,23 @@ class _ProductListPageState extends State<ProductListPage> {
                     },
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.all(0),
-                      side: BorderSide(
+                      side: const BorderSide(
                         color: Color(0xffBC1D58),
                       ),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0)),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       CupertinoIcons.cart,
                       color: Color(0xffBC1D58),
                       size: 18,
-                    )),
+                    )
+                ),
                 Transform.translate(
                   offset: const Offset(8, -7),
                   child: CircleAvatar(
                     radius: 7,
-                    backgroundColor: Color(0xffD7D8C9),
+                    backgroundColor: const Color(0xffD7D8C9),
                     child: Text(
                       '${productsController.addedToCart.length}',
                       textAlign: TextAlign.center,
@@ -174,17 +98,16 @@ class _ProductListPageState extends State<ProductListPage> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   width: deviceWidth,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 16,
                       ),
-                      Expanded(
+                      const Expanded(
                         flex: 4,
                         child: Text("H K C O M",
                             style: TextStyle(
@@ -201,25 +124,25 @@ class _ProductListPageState extends State<ProductListPage> {
                                 height: 40,
                                 width: 40,
                                 child: OutlinedButton(
-                                    child: Icon(
-                                      CupertinoIcons.list_bullet,
-                                      color: Color(0xffBC1D58),
-                                      size: 18,
-                                    ),
                                     onPressed: () {
                                       debugPrint('List Tapped!');
                                     },
                                     style: OutlinedButton.styleFrom(
-                                      padding: EdgeInsets.all(0),
-                                      side: BorderSide(
+                                      padding: const EdgeInsets.all(0),
+                                      side: const BorderSide(
                                         color: Colors.transparent,
                                       ),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8.0)),
+                                    ),
+                                    child: const Icon(
+                                      CupertinoIcons.list_bullet,
+                                      color: Color(0xffBC1D58),
+                                      size: 18,
                                     )),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -238,7 +161,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                           borderRadius:
                                               BorderRadius.circular(8.0)),
                                     ),
-                                    child: Icon(
+                                    child: const Icon(
                                       CupertinoIcons.square_grid_2x2,
                                       color: Color(0xffBC1D58),
                                       size: 18,
@@ -267,12 +190,12 @@ class _ProductListPageState extends State<ProductListPage> {
                             border: Border.all(color: Colors.black, width: 1),
                             color: Colors.transparent),
                         width: deviceWidth * 0.90,
-                        child: products.isNotEmpty
+                        child: productsController.productss.isNotEmpty
                             ? GridView.builder(
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2),
-                                itemCount: products.length,
+                                itemCount: productsController.productss.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Container(
                                     margin: const EdgeInsets.all(2),
@@ -296,23 +219,22 @@ class _ProductListPageState extends State<ProductListPage> {
                                           ),
                                           child: ClipRRect(
                                             borderRadius:
-                                                BorderRadius.circular(12),
-                                            child: products[index].image != null
-                                                ? _buildImage(
-                                                    products[index].image!)
-                                                : Image.asset(
-                                                    'assets/headset.jpg',
-                                                    fit: BoxFit.fitHeight,
-                                                  ),
+                                              BorderRadius.circular(12),
+                                            child: productsController.productss[index].image != null
+                                              ? _buildImage(
+                                                productsController.productss[index].image!)
+                                              : Image.asset(
+                                                'assets/headset.jpg',
+                                                fit: BoxFit.fitHeight,
+                                              ),
                                           ),
                                         ),
                                         Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             const SizedBox(height: 5),
                                             Text(
-                                              '${products[index].title}',
+                                              '${productsController.productss[index].title}',
                                               style: const TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
@@ -322,90 +244,42 @@ class _ProductListPageState extends State<ProductListPage> {
                                               height: 2,
                                             ),
                                             Text(
-                                              "${products[index].price}",
+                                              "${productsController.productss[index].price}",
                                               style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.grey.shade500),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.grey.shade500),
                                             ),
                                             const SizedBox(
                                               height: 2,
                                             ),
                                             Text(
-                                              "${products[index].category}",
+                                              "${productsController.productss[index].category}",
                                               style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.grey.shade500),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.grey.shade500),
                                             ),
                                             const SizedBox(
                                               height: 2,
                                             ),
                                             Row(
                                               children: [
+                                                Text("Quantity : ${productsController.productss[index].quantities}"),
                                                 Text(
-                                                  products[index].availability!
-                                                      ? "In Stock"
-                                                      : "Not Available",
+                                                  productsController.productss[index].availability!
+                                                    ? "In Stock"
+                                                    : "Not Available",
                                                   style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      color:
-                                                          Colors.grey.shade500),
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                      FontWeight.w400,
+                                                    color:
+                                                      Colors.grey.shade500),
                                                 ),
                                                 productsController
-                                                        .productQuantities
-                                                        .isEmpty
-                                                    ? Container(
-                                                        width: 100,
-                                                        height: 50,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                          color: Colors.green,
-                                                        ),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Expanded(
-                                                                flex: 1,
-                                                                child:
-                                                                    IconButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          productsController.productQuantities.values.isNotEmpty
-                                                                              ? productsController.addedToCart.removeAt(index)
-                                                                              : debugPrint('add products to remove');
-                                                                        },
-                                                                        icon: Icon(
-                                                                            Icons.remove))),
-                                                            Expanded(
-                                                                flex: 1,
-                                                                child: Text(
-                                                                    '${productsController.productQuantities.values.isNotEmpty ? productsController.productQuantities[productsController.addedToCart[index].product_id.toString()] : 0}')),
-                                                            Expanded(
-                                                                flex: 1,
-                                                                child:
-                                                                    IconButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          productsController
-                                                                              .addToCart(products[index]);
-                                                                        },
-                                                                        icon: Icon(
-                                                                            Icons.add)))
-                                                          ],
-                                                        ),
-                                                      )
-                                                    : SizedBox(
+                                                        .productss.isEmpty
+                                                    ? SizedBox(
                                                         height: 30,
                                                         width: 30,
                                                         child: OutlinedButton(
@@ -413,29 +287,78 @@ class _ProductListPageState extends State<ProductListPage> {
                                                             debugPrint(
                                                                 'add to cart');
                                                             productsController
-                                                                .addToCart(
-                                                                    products[
-                                                                        index]);
+                                                                .addToCart(productsController.productss[index]);
                                                           },
-                                                          child: Icon(
+                                                          style: OutlinedButton.styleFrom(
+                                                            backgroundColor:
+                                                              Colors.yellow,
+                                                            padding:
+                                                              const EdgeInsets
+                                                                .all(0),
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                BorderRadius
+                                                                  .circular(
+                                                                    4))),
+                                                          child: const Icon(
                                                             Icons
-                                                                .add_shopping_cart_rounded,
+                                                              .add_shopping_cart_rounded,
                                                             color: Colors.white,
                                                             size: 20,
                                                           ),
-                                                          style: OutlinedButton.styleFrom(
-                                                              backgroundColor:
-                                                                  Colors.yellow,
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(0),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4))),
                                                         ),
-                                                      ),
+                                                      ):Container(
+                                                  width: 100,
+                                                  height: 50,
+                                                  decoration:
+                                                  BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius
+                                                        .circular(8),
+                                                    color: Colors.green,
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      Expanded(
+                                                          flex: 1,
+                                                          child:
+                                                          IconButton(
+                                                              onPressed:
+                                                                  () {
+                                                                productsController.addedToCart[index].quantities != 0
+                                                                    ? productsController.addedToCart.removeAt(index)
+                                                                    : debugPrint('add products to remove');
+                                                              },
+                                                              icon: const Icon(
+                                                                  Icons.remove))),
+                                                      Expanded(
+                                                          flex: 1,
+                                                          child: Text(
+                                                              '${productsController.productss[index].quantities != 0 ? productsController.productss[index].quantities : 0}')),
+                                                      Expanded(
+                                                          flex: 1,
+                                                          child:
+                                                          IconButton(
+                                                              onPressed:
+                                                                  () {
+                                                                productsController
+                                                                    .addToCart(productsController.productss[index]);
+                                                              },
+                                                              icon: const Icon(
+                                                                  Icons.add
+                                                              )
+                                                          )
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+
                                               ],
                                             ),
                                           ],
@@ -461,10 +384,10 @@ class _ProductListPageState extends State<ProductListPage> {
             onPressed: () {
               debugPrint('route to add product page');
             },
-            backgroundColor: Color(0xff0065fe),
+            backgroundColor: const Color(0xff0065fe),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-            child: Icon(
+            child: const Icon(
               Icons.add,
               color: Colors.white,
               size: 24,

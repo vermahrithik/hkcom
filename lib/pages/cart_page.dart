@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hkcom/controller/productcontroller.dart';
-import 'package:hkcom/model/productmodel.dart';
 import 'package:hkcom/routing/app_route_constants.dart';
 
 class CartPage extends StatefulWidget {
@@ -21,7 +18,6 @@ class _CartPageState extends State<CartPage> {
   final productsController = Get.find<ProductsController>();
   final GetStorage storage = GetStorage();
 
-  // productsController.products = products.map<ProductModel>((product)=>ProductModel.fromJson(product)).toList();
   Map<String, int> quantityMap = {};
 
   @override
@@ -29,8 +25,8 @@ class _CartPageState extends State<CartPage> {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
     return Obx(() {
-      productsController.countProductQuantities(
-          productsController.addedToCart);
+      // productsController.countProductQuantities(
+      //     productsController.addedToCart);
       return Scaffold(
         backgroundColor: const Color(0xff131C25),
         appBar: AppBar(
@@ -150,7 +146,7 @@ class _CartPageState extends State<CartPage> {
                                   debugPrint(
                                       'length ->> ${productsController.addedToCart[index].title} ${productsController.addedToCart.where((e) => e.product_id == productsController.addedToCart[index].product_id).length}');
                                   debugPrint(
-                                      "printtttttt : ${productsController.productQuantities.keys.contains(productsController.addedToCart[index].product_id.toString())}");
+                                      "printtttttt : ${productsController.addedToCart[index].product_id}");
                                   return Container(
                                     margin: const EdgeInsets.all(2),
                                     height: deviceHeight * 0.3,
@@ -270,11 +266,10 @@ class _CartPageState extends State<CartPage> {
                                               height: 2,
                                             ),
                                             Text(
-                                              productsController
-                                                      .addedToCart[index]
-                                                      .availability!
-                                                  ? "In Stock"
-                                                  : "Not Available",
+                                              // productsController
+                                              //         .addedToCart[index]
+                                              //         .availability! ?
+                                              "quantity : ${productsController.addedToCart[index].quantities}",
                                               style: const TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
